@@ -20,7 +20,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            return connection.Query<Country>("SELECT * FROM Countries").ToList();
+            return connection.Query<Country>(@"SELECT * FROM location.""Countries""").ToList();
         }
     }
 
@@ -29,7 +29,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("INSERT INTO Countries (CountryName) VALUES (@CountryName)", country);
+            connection.Execute(@"INSERT INTO location.""Countries"" (""CountryName"") VALUES (@CountryName)", country);
         }
     }
 
@@ -38,7 +38,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("UPDATE Countries SET CountryName = @CountryName WHERE CountryId = @CountryId", country);
+            connection.Execute(@"UPDATE location.""Countries"" SET ""CountryName"" = @CountryName WHERE ""CountryId"" = @CountryId", country);
         }
     }
 
@@ -47,7 +47,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("DELETE FROM Countries WHERE CountryId = @CountryId", new { CountryId = countryId });
+            connection.Execute(@"DELETE FROM location.""Countries"" WHERE ""CountryId"" = @CountryId", new { CountryId = countryId });
         }
     }
 
@@ -57,7 +57,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            return connection.Query<State>("SELECT * FROM States WHERE CountryId = @CountryId", new { CountryId = countryId }).ToList();
+            return connection.Query<State>(@"SELECT * FROM location.""States"" WHERE ""CountryId"" = @CountryId", new { CountryId = countryId }).ToList();
         }
     }
 
@@ -66,7 +66,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("INSERT INTO States (StateName, CountryId) VALUES (@StateName, @CountryId)", state);
+            connection.Execute(@"INSERT INTO location.""States"" (""StateName"", ""CountryId"") VALUES (@StateName, @CountryId)", state);
         }
     }
 
@@ -75,7 +75,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("UPDATE States SET StateName = @StateName WHERE StateId = @StateId", state);
+            connection.Execute(@"UPDATE location.""States"" SET ""StateName"" = @StateName WHERE ""StateId"" = @StateId", state);
         }
     }
 
@@ -84,7 +84,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("DELETE FROM States WHERE StateId = @StateId", new { StateId = stateId });
+            connection.Execute(@"DELETE FROM location.""States"" WHERE ""StateId"" = @StateId", new { StateId = stateId });
         }
     }
 
@@ -94,7 +94,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            return connection.Query<City>("SELECT * FROM Cities WHERE StateId = @StateId", new { StateId = stateId }).ToList();
+            return connection.Query<City>(@"SELECT * FROM location.""Cities"" WHERE ""StateId"" = @StateId", new { StateId = stateId }).ToList();
         }
     }
 
@@ -103,7 +103,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("INSERT INTO Cities (CityName, StateId) VALUES (@CityName, @StateId)", city);
+            connection.Execute(@"INSERT INTO location.""Cities"" (""CityName"", ""StateId"") VALUES (@CityName, @StateId)", city);
         }
     }
 
@@ -112,7 +112,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("UPDATE Cities SET CityName = @CityName WHERE CityId = @CityId", city);
+            connection.Execute(@"UPDATE location.""Cities"" SET ""CityName"" = @CityName WHERE ""CityId"" = @CityId", city);
         }
     }
 
@@ -121,7 +121,7 @@ public class LocationRepository
         using (var connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            connection.Execute("DELETE FROM Cities WHERE CityId = @CityId", new { CityId = cityId });
+            connection.Execute(@"DELETE FROM location.""Cities"" WHERE ""CityId"" = @CityId", new { CityId = cityId });
         }
     }
 }
