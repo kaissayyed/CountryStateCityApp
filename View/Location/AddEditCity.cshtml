@@ -1,0 +1,13 @@
+﻿@using CountryStateCityApp.Model
+@model City
+
+<h2>@(Model.CityId == 0 ? "Add" : "Edit") City</h2>
+
+<form asp-action="@(Model.CityId == 0 ? "AddCity" : "EditCity")" method="post">
+    <div class="form-group">
+        <label for="CityName">City Name</label>
+        <input type="text" class="form-control" id="CityName" name="CityName" value="@Model.CityName" required />
+    </div>
+    <input type="hidden" name="StateId" value="@Model.StateId" />
+    <button type="submit" class="btn btn-primary">@Model.CityId == 0 ? "Add City" : "Update City"</button>
+</form>

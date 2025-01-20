@@ -1,0 +1,26 @@
+﻿@using CountryStateCityApp.Model
+@model IEnumerable<State>
+
+<h2>States</h2>
+<table>
+    <thead>
+        <tr>
+            <th>State Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var state in Model)
+        {
+            <tr>
+                <td>@state.StateName</td>
+                <td>
+                    <a href="@Url.Action("EditState", new { id = state.StateId })">Edit</a> |
+                    <a href="@Url.Action("DeleteState", new { id = state.StateId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddState", new { countryId = ViewBag.CountryId })">Add New State</a>

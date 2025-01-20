@@ -1,0 +1,12 @@
+﻿@using CountryStateCityApp.Model
+@model Country
+
+<h2>Add Country</h2>
+
+<form asp-action="AddCountry" method="post">
+    <div>
+        <label for="CountryName">Country Name</label>
+        <input type="text" name="CountryName" id="CountryName" required />
+    </div>
+    <button type="submit">Add Country</button>
+</form>

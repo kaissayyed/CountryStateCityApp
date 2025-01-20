@@ -1,0 +1,13 @@
+﻿@using CountryStateCityApp.Model
+@model Country
+
+<h2>Edit Country</h2>
+
+<form asp-action="EditCountry" method="post">
+    <input type="hidden" name="CountryId" value="@Model.CountryId" />
+    <div>
+        <label for="CountryName">Country Name</label>
+        <input type="text" name="CountryName" id="CountryName" value="@Model.CountryName" required />
+    </div>
+    <button type="submit">Update Country</button>
+</form>
